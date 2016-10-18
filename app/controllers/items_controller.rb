@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
       params.require(:item).permit(:name, :quantity, :price)
     end
 
-    def set_post
+    def set_item
       @item = Item.find(params[:id])
     end
 
