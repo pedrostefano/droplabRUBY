@@ -2,7 +2,7 @@ class ItemsController < StaticController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :approve]
 
   def index
-    @items = Item.all
+    @items = Item.items_by(current_user)
   end
 
   def new
