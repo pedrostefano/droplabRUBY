@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :items
   devise_for :users
-  root to: 'static#index'
+  root to: 'home#index'
 
 end

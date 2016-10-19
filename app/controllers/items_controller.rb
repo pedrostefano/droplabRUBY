@@ -1,4 +1,5 @@
-class ItemsController < ApplicationController
+class ItemsController < StaticController
+  before_action :set_item, only: [:show, :edit, :update, :destroy, :approve]
 
   def index
     @items = Item.all
@@ -10,6 +11,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
+    @item.user_id = current_user.id
 
     if @item.save
       redirect_to @item, notice: 'Your item was created successfully'
@@ -18,9 +20,24 @@ class ItemsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to @item, notice: 'Your item was edited successfully'
+    else
+      render :edit
+    end
+  end
+
   def show
   end
 
+  def destroy
+    @item.delete
+    redirect_to items_path, notice: 'Your item was deleted successfully'
+  end
   private
 
     def item_params
