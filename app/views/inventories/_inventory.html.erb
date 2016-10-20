@@ -1,14 +1,17 @@
-<tr>
-  <td>
-    <%= inventory.name %>
-  </td>
-  <td>
-    <%= inventory.description %>
-  </td>
-  <td>
-    <%= link_to '', edit_inventory_path(inventory), id: "edit_#{inventory.id}", class: 'glyphicon glyphicon-pencil index-icons'%>
-  </td>
-  <td>
-    <%= link_to '', inventory_path(inventory), method: :delete, id: "delete_inventory_#{inventory.id}_from_index", class: 'glyphicon glyphicon-trash index-icons', data: { confirm: 'Are you sure?' } %>
-  </td>
-</tr>
+<div class="col-sm-6 col-md-4">
+  <div class="thumbnail">
+    <img src="/logo.png">
+      <div class="caption">
+        <h3><%= inventory.name %></h3>
+        <p>Description: <%= inventory.description %></p>
+        <p>
+          <%= link_to 'Items', inventory_items_path(inventory.id), id: "#{inventory.id}", class: 'btn btn-primary index-icons'%>
+
+          <%= link_to '', edit_inventory_path(inventory), id: "edit_#{inventory.id}", class: 'btn btn-default glyphicon glyphicon-pencil index-icons index-icons'%>
+
+          <%= link_to '', inventory_path(inventory), method: :delete, id: "delete_inventory_#{inventory.id}_from_index", class: 'btn btn-danger glyphicon glyphicon-trash index-icons', data: { confirm: 'Are you sure?' } %>
+
+        </p>
+      </div>
+  </div>
+</div>

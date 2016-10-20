@@ -5,9 +5,6 @@
   <li class="<%= active?(inventories_path) %>">
     <%= link_to "Inventories", inventories_path if user_signed_in? %>
   </li>
-  <li class="<%= active?(items_path) %>">
-    <%= link_to "Items", items_path if user_signed_in? %>
-  </li>
   <li class="dropdown pull-right">
    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
   <ul class="dropdown-menu">
