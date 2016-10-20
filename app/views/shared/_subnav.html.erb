@@ -1,0 +1,20 @@
+<ul class="custom-nav nav nav-tabs">
+  <li class="<%= active?(root_path) %>">
+    <%= link_to "Home", root_path %>
+  </li>
+  <li class="<%= active?(items_path) %>">
+    <%= link_to "Items", items_path if user_signed_in? %>
+  </li>
+  <li class="<%= active?(new_item_path) %>">
+    <%= link_to "Add New Item", new_item_path, id: 'new_item_from_nav' if user_signed_in? %>
+  </li>
+  <li class="dropdown pull-right">
+   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+  <ul class="dropdown-menu">
+    <li>
+      <%= link_to "Logout", destroy_user_session_path, method: :delete if user_signed_in? %>
+      <%= link_to "Login", user_session_path if not user_signed_in? %>
+    </li>
+  </ul>
+</li>
+</ul>

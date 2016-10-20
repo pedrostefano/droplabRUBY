@@ -1,4 +1,4 @@
-class ItemsController < StaticController
+class ItemsController < AuthController
   before_action :set_item, only: [:show, :edit, :update, :destroy, :approve]
 
   def index
