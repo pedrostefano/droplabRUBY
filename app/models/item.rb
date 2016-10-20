@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
   belongs_to :user
+  belongs_to :inventory
+
   validates_presence_of :name, :quantity, :price
 
   #validates :price, numericality: { greater_than: 0.0 }

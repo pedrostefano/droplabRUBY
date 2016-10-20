@@ -1,7 +1,8 @@
 <div class="clearfix">
-  <h2 class='pull-left'>Items</h2>
-  <%= link_to "+", new_item_path, id: 'item_inventory', class:'btn btn-primary btn-circle' %>
+  <h2 class='pull-left'>Inventories</h2>
+  <%= link_to "+", new_inventory_path, id: 'new_inventory', class:'btn btn-primary btn-circle ' %>
 </div>
+
 <table class="table table-striped table-hover">
   <thead>
     <tr>
@@ -9,16 +10,13 @@
         Name
       </th>
       <th>
-        Quantity
-      </th>
-      <th>
-        Price
+        Description
       </th>
       <th></th>
       <th></th>
     </tr>
   </thead>
-  <tbody id="items">
-    <%= render @items %>
+  <tbody id="inventories">
+    <%= render @inventories %>
   </tbody>
 </table>

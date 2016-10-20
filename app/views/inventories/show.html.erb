@@ -1,0 +1,13 @@
+<div class="well">
+  <div>
+    <h3><span>Name:</span> <%= @inventory.name %></h3>
+  </div>
+  <div>
+    <h3><span>Description:</span> <%= @inventory.description %></h3>
+  </div>
+    <div>
+    <h3><span>User:</span> <%= @inventory.user.email %></h3>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_inventory_path(@inventory), class: 'btn btn-primary' %>

@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= inventory.name %>
+  </td>
+  <td>
+    <%= inventory.description %>
+  </td>
+  <td>
+    <%= link_to '', edit_inventory_path(inventory), id: "edit_#{inventory.id}", class: 'glyphicon glyphicon-pencil index-icons'%>
+  </td>
+  <td>
+    <%= link_to '', inventory_path(inventory), method: :delete, id: "delete_inventory_#{inventory.id}_from_index", class: 'glyphicon glyphicon-trash index-icons', data: { confirm: 'Are you sure?' } %>
+  </td>
+</tr>
