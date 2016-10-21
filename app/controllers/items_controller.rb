@@ -1,15 +1,17 @@
 class ItemsController < AuthController
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
-  before_action :set_inventory, only: [:index, :create]
 
-  respond_to :html, :json
+  before_action :set_inventory
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+
+  respond_to :html
+  respond_to :json, only: [:index , :show]
 
   def index
     @items = Item.items_by(@inventory)
+    respond_with(@items)
   end
 
   def new
-    @inventory = Inventory.find params[:inventory_id]
     @item = Item.new(:inventory=>@inventory)
   end
 
@@ -18,7 +20,7 @@ class ItemsController < AuthController
     @item.user_id = current_user.id
 
     if @item.save
-      redirect_to @item, notice: 'Your item was created successfully'
+      redirect_to inventory_items_path, notice: 'Your item was created successfully'
     else
       render :new
     end
@@ -29,17 +31,19 @@ class ItemsController < AuthController
 
   def update
     if @item.update(item_params)
-      redirect_to @item, notice: 'Your item was edited successfully'
+      @inventory = Inventory.find(@item.inventory_id)
+      redirect_to inventory_items_path(@inventory), notice: 'Your item was edited successfully'
     else
       render :edit
     end
   end
 
   def show
+    respond_with(@item)
   end
 
   def destroy
-    @inventory = Inventory.find(@item.inventory_id)
+    #@inventory = Inventory.find(@item.inventory_id)
     @item.delete
     redirect_to inventory_items_path(@inventory), notice: 'Your item was deleted successfully'
   end

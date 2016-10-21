@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :inventories, shallow: true do
+  resources :inventories do #, shallow: true do
     resources :items
   end
 

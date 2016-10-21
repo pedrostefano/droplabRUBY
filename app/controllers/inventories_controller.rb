@@ -2,8 +2,12 @@ class InventoriesController < AuthController
 
   before_action :set_inventory, only: [:show, :edit, :update, :destroy, :approve]
 
+  respond_to :html
+  respond_to :json, only: [:index , :show]
+
   def index
     @inventories = Inventory.inventories_by(current_user)
+    respond_with(@inventories)
   end
 
   def new
@@ -15,7 +19,7 @@ class InventoriesController < AuthController
     @inventory.user_id = current_user.id
 
     if @inventory.save
-      redirect_to @inventory, notice: 'Your Inventory was created successfully'
+      redirect_to inventories_path, notice: 'Your Inventory was created successfully'
     else
       render :new
     end
@@ -33,11 +37,15 @@ class InventoriesController < AuthController
   end
 
   def show
+    respond_with(@inventory)
   end
 
   def destroy
-    @inventory.delete
-    redirect_to inventories_path, notice: 'Your Inventory was deleted successfully'
+    if @inventory.destroy
+      redirect_to inventories_path, notice: 'Your Inventory was deleted successfully'
+    else
+      render :index
+    end
   end
   private
 
