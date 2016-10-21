@@ -6,12 +6,12 @@
     <%= link_to "Inventories", inventories_path if user_signed_in? %>
   </li>
   <li class="dropdown pull-right">
-   <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
-  <ul class="dropdown-menu">
-    <li>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete if user_signed_in? %>
-      <%= link_to "Login", user_session_path if not user_signed_in? %>
-    </li>
-  </ul>
-</li>
+    <a href="#" data-toggle="dropdown" class="dropdown-toggle">Options<strong class="caret"></strong></a>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete if user_signed_in? %>
+        <%= link_to "Login", user_session_path if not user_signed_in? %>
+      </li>
+    </ul>
+  </li>
 </ul>
