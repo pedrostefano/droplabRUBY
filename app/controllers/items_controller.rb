@@ -1,13 +1,17 @@
 class ItemsController < AuthController
 
-  before_action :set_inventory
+  before_action :set_inventory, only: [:index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   respond_to :html
   respond_to :json, only: [:index , :show]
 
   def index
-    @items = Item.items_by(@inventory)
+    @items = Item.items_by_user(current_user)
+    if params[:inventory_id]
+      @items = @items.items_by_inventory(@inventory)
+    end
+
     respond_with(@items)
   end
 
@@ -55,7 +59,9 @@ class ItemsController < AuthController
     end
 
     def set_inventory
-      @inventory = Inventory.find(params[:inventory_id])
+      if params[:inventory_id]
+        @inventory = Inventory.find(params[:inventory_id])
+      end
     end
 
     def set_item

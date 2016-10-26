@@ -6,7 +6,7 @@ class Item < ApplicationRecord
 
   #validates :price, numericality: { greater_than: 0.0 }
 
-  scope :items_by, ->(user) { where(user_id: user.id) }
-  scope :items_by, ->(inventory) { where(inventory_id: inventory.id) }
+  scope :items_by_user, ->(user) { where(user_id: user.id) }
+  scope :items_by_inventory, ->(inventory) { where(inventory_id: inventory.id) }
 
 end

@@ -9,12 +9,12 @@
     <%= item.price %>
   </td>
   <td>
-    <%= link_to '', [item.inventory, item], id: "show_#{item.id}", class: 'glyphicon glyphicon-asterisk index-icons'%>
+    <%= link_to '', item, id: "show_#{item.id}", class: 'glyphicon glyphicon-asterisk index-icons'%>
   </td>
   <td>
-    <%= link_to '', edit_inventory_item_path(item.inventory, item), id: "edit_#{item.id}", class: 'glyphicon glyphicon-pencil index-icons'%>
+    <%= link_to '', edit_item_path(item), id: "edit_#{item.id}", class: 'glyphicon glyphicon-pencil index-icons'%>
   </td>
   <td>
-    <%= link_to '', [item.inventory, item], method: :delete, id: "delete_item_#{item.id}_from_index", class: 'glyphicon glyphicon-trash index-icons', data: { confirm: 'Are you sure?' } %>
+    <%= link_to '', item, method: :delete, id: "delete_item_#{item.id}_from_index", class: 'glyphicon glyphicon-trash index-icons', data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>
