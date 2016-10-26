@@ -20,11 +20,11 @@ class ItemsController < AuthController
   end
 
   def create
-    @item = @inventory.items.new(item_params)
+    @item = Item.new(item_params)
     @item.user_id = current_user.id
 
     if @item.save
-      redirect_to inventory_items_path, notice: 'Your item was created successfully'
+      redirect_to items_path, notice: 'Your item was created successfully'
     else
       render :new
     end
@@ -35,8 +35,7 @@ class ItemsController < AuthController
 
   def update
     if @item.update(item_params)
-      @inventory = Inventory.find(@item.inventory_id)
-      redirect_to inventory_items_path(@inventory), notice: 'Your item was edited successfully'
+      redirect_to items_path, notice: 'Your item was edited successfully'
     else
       render :edit
     end
@@ -47,9 +46,8 @@ class ItemsController < AuthController
   end
 
   def destroy
-    #@inventory = Inventory.find(@item.inventory_id)
     @item.delete
-    redirect_to inventory_items_path(@inventory), notice: 'Your item was deleted successfully'
+    redirect_to items_path, notice: 'Your item was deleted successfully'
   end
 
   private
